@@ -65,6 +65,17 @@ GOOGLE_CLIENT_SECRET=your-client-secret-here
 GOOGLE_API_KEY=your-google-api-key-here
 ```
 
+##### NOTE: Make sure the Google Calendar API is enabled.
+
+- In the [Google Cloud Console](https://console.cloud.google.com/), go to "Enabled API & Services". Click on the "+ENABLE APIS AND SERVICES " button.
+- Search for the Google Calendar API.
+- Select it and click "Enable".
+
+##### NOTE: Add a test user
+
+- In the [Google Cloud Console](https://console.cloud.google.com/), go to "OAuth Consent Screen".
+- Under "test users" add the Google account you will be using to authenticate yourself.
+
 #### 3.3 Github repo & Personal Access Token
 
 - Go to your repository with milestones, and copy the github repo name from the URL. For example: https://github.com/LuytenJamie/google-calender-app
