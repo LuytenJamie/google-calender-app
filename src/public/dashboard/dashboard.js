@@ -7,6 +7,8 @@ const roleSpan = document.getElementById("role");
 const milestonesDiv = document.getElementById("milestones");
 const messageDiv = document.getElementById("message");
 
+let userRole = "free";
+
 // Logout Button
 document.getElementById("logout").onclick = async () => {
   try {
@@ -31,6 +33,7 @@ const fetchUserInfo = async () => {
     const userInfo = await response.json();
     userSpan.innerText = userInfo.name || "Unknown";
     roleSpan.innerText = userInfo.role || "Unknown";
+    userRole = userInfo.role;
     fetchMilestones();
   } catch (err) {
     console.error(err);
@@ -103,18 +106,30 @@ const fetchMilestones = async () => {
       const addToCalendarCell = document.createElement("td");
       const addToCalendarBtn = document.createElement("button");
       addToCalendarBtn.innerText = "Add to calendar";
-      addToCalendarBtn.onclick = async (e) => {
-        e.preventDefault();
-        const htmlLink = await addToCalendar(
-          milestone.title,
-          milestone.due_on,
-          milestone.due_on
-        );
-
-        e.target.innerText = "View event";
-        e.target.onclick = () => window.open(htmlLink, "_blank");
-        e.target.style.backgroundColor = "green";
-      };
+      if(userRole === "free") {
+        addToCalendarBtn.disabled = true;
+        addToCalendarBtn.innerText = "Disabled";
+        addToCalendarBtn.style.backgroundColor = "orange";
+        addToCalendarBtn.style.cursor = "not-allowed";
+      } else {
+        addToCalendarBtn.onclick = async (e) => {
+          e.preventDefault();
+          await addToCalendar(
+            milestone.title,
+            milestone.due_on,
+            milestone.due_on
+          )
+            .then((htmlLink) => {
+              e.target.innerText = "View event";
+              e.target.onclick = () => window.open(htmlLink, "_blank");
+              e.target.style.backgroundColor = "green";
+            })
+            .catch(() => {
+              e.target.innerText = "Error";
+              e.target.style.backgroundColor = "red";
+            });
+        };
+      }
       addToCalendarCell.appendChild(addToCalendarBtn);
       row.appendChild(addToCalendarCell);
 
@@ -150,6 +165,7 @@ const addToCalendar = async (summary, start, end) => {
   } catch (err) {
     console.error(err);
     alert("Error creating event");
+    throw err;
   }
 };
 
