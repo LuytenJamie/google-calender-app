@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Calendar Integration</title>
+    <link rel="stylesheet" href="./dashboard/dashboard.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>GitHub Calendar Integration</h1>
+
+      <div id="auth">
+        <div>
+          <p><strong>User:</strong> <span id="user">Not logged in</span></p>
+          <p><strong>Role:</strong> <span id="role">N/A</span></p>
+        </div>
+        <button id="logout">Logout</button>
+      </div>
+
+      <h2>Milestones</h2>
+      <button id="fetchMilestones">Refetch Milestones</button>
+      <table id="milestones">
+        <thead>
+          <tr>
+            <th>Creator</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Milestone Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Milestones will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script src="./dashboard/dashboard.js"></script>
+</html>
