@@ -4,7 +4,6 @@ const {getEnforcer} = require('../middlewares/enforcer');
 const redirectURI = 'http://localhost:3000/auth/google/callback';
 const SCOPES = 'https://www.googleapis.com/auth/calendar openid email profile';
 
-// Store user Access token and Refresh token, in memory
 let accessToken = '';
 let refreshToken = '';
 
@@ -39,18 +38,15 @@ exports.googleCallback = async (req, res) => {
         accessToken = tokenData.access_token;
         refreshToken = tokenData.refresh_token;
 
-        //Fetch user information
         const { data: userInfo } = await axios.get(userInfoURL, {
             headers: { Authorization: `Bearer ${tokenData.access_token}` },
         });
 
-        //Determine role using Casbin policy
         const roles =  await getEnforcer().getRolesForUser(userInfo.email);
         if (!roles || roles.length === 0) {
             return res.status(403).send('Role not found in policy');
         }
         console.log(roles);
-        //Pick the first role (if there are multiple roles, handle it as needed)
         const role = roles[0];
 
         // Generate and set JWT in a cookie

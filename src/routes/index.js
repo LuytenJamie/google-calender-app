@@ -7,9 +7,7 @@ const { authorize, isAuthenticated } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-// Root route: Serve login or dashboard based on authentication
 router.get('/', isAuthenticated, (req, res) => {
-    // If authenticated, serve the dashboard
     res.sendFile(path.join(__dirname, '../public/dashboard/index.html'));
 });
 // Authentication routes (no auth required for these)

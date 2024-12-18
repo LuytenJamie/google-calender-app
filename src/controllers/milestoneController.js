@@ -2,7 +2,7 @@ const axios = require('axios');
 
 exports.getMilestones = async (req, res) => {
     const githubToken = process.env.GITHUB_TOKEN;
-    const repo = process.env.GITHUB_REPO; // Replace with your actual GitHub repository
+    const repo = process.env.GITHUB_REPO; 
 
     try {
         const { data: milestones } = await axios.get(
