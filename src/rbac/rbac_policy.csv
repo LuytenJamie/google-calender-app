@@ -1,9 +1,6 @@
 p, free, milestones, view
-p, premium, milestones, view
 p, premium, calendar, add
-p, admin, milestones, view
-p, admin, calendar, add
 
-g, free_user@gmail.com, free
-g, premium_user@gmail.com, premium
-g, admin_user@gmail.com, admin
+g, premium, free
+g, admin, premium
+g, jamiegeypen@hotmail.com, premium

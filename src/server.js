@@ -6,7 +6,7 @@ const routes = require('./routes');
 const path = require('path');
 const app = express();
 
-// Initialize Casbin at the start
+// Initialize Casbin
 initializeCasbin().then(() => {
     console.log('Casbin initialized successfully');
   }).catch((err) => {
@@ -22,6 +22,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
-// Start the server
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
