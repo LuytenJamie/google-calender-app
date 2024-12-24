@@ -76,23 +76,20 @@ GOOGLE_API_KEY=your-google-api-key-here
 - In the [Google Cloud Console](https://console.cloud.google.com/), go to "OAuth Consent Screen".
 - Under "test users" add the Google account you will be using to authenticate yourself.
 
-#### 3.3 Github repo & Personal Access Token
+#### 3.3 Github OAuth App
 
-- Go to your repository with milestones, and copy the github repo name from the URL. For example: https://github.com/LuytenJamie/google-calender-app
-- We are only intrested in the following part: **LuytenJamie/google-calender-app**
-- Copy this part and paste it into the `.env` file:
-
-```env
-GITHUB_REPO=your-github-repo-name-here
-```
-
-- Go to [GitHub Token Settings](https://github.com/settings/tokens).
-- Click **Generate new token**.
-- Choose the required scopes for your project (for example, `repo` for repository access).
-- Copy the generated token and paste it into the `.env` file:
+- Go to https://github.com/settings/developers
+- Add a new OAuth App
+- Enter the following details
+  - Application name
+  - Homepage URL : http://localhost:3000
+  - Application description
+  - Authorization Callback URL http://localhost:3000/auth/github/callback
+- After this copy the Client ID, Client Secret to the `.env` file:
 
 ```env
-GITHUB_TOKEN=your-github-token-here
+GITHUB_CLIENT_ID=<your-github-client-id>
+GITHUB_CLIENT_SECRET=<your-github-client-secret>
 ```
 
 #### 3.4 Session Secret
